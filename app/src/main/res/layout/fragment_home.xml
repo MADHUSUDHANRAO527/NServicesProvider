@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="home"
+            type="mobile.app.nservicesprovider.viewModels.HomeVM" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/user_img"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignBottom="@+id/img_lay"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/padding_4"
+                    android:src="@drawable/ic_account_circle_white"
+                    android:tint="@color/app_blue" />
+
+                <Switch
+                    android:id="@+id/online_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/margin_8"
+                    android:text="@string/online"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/img_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/user_img"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/sp_name_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/jobs_completed_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/rating_bar"
+                        style="@style/Widget.MaterialRatingBar.RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        app:mrb_progressTint="@color/orange" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/services_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginTop="@dimen/padding_20">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@color/orange"
+                        app:tabMode="fixed"
+                        app:tabSelectedTextColor="@color/orange"
+                        app:tabTextColor="@android:color/black" />
+                </android.support.design.widget.AppBarLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </android.support.design.widget.CoordinatorLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
