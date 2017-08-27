@@ -98,5 +98,6 @@
     <string name="no_future_jobs">No future jobs</string>
     <string name="your_job_is_not_yet_assigned">Your job is not yet assigned</string>
     <string name="offline">Offline</string>
+    <string name="email">Email</string>
 
 </resources>

@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
             @Override
             public void onClick(View v) {
                 if (mPreferenceManager.getString("sp_name") != null) {
-                    startActivity(new Intent(MainActivity.this, UserSettingsActivity.class));
+                    startActivity(new Intent(MainActivity.this, UserProfileActivity.class));
                 } else {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }

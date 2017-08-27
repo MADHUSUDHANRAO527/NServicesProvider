@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,6 +30,7 @@ import mobile.app.nservicesprovider.events.JobAcceptEvent;
 import mobile.app.nservicesprovider.events.JobRejectEvent;
 import mobile.app.nservicesprovider.events.JobStartEndEvent;
 import mobile.app.nservicesprovider.events.LoginEvent;
+import mobile.app.nservicesprovider.events.MapDistanceEvent;
 import mobile.app.nservicesprovider.events.NewJobRequestEvent;
 import mobile.app.nservicesprovider.events.OnOffJobEvent;
 import mobile.app.nservicesprovider.events.TodaysJobEvent;
@@ -66,7 +68,7 @@ public class VolleyHelper {
                                 EventBus.getDefault().post(new LoginEvent(false, loginResponse.getString("message"), loginResponse));
                             } else {
                                 JSONObject jsonObject = loginResponse.getJSONObject("data");
-                                mPreferenceManager.putString("login_response",jsonObject.toString());
+                                mPreferenceManager.putString("login_response", jsonObject.toString());
                                 mPreferenceManager.putString("sp_id", jsonObject.getString("id"));
                                 mPreferenceManager.putString("token", loginResponse.getString("token"));
                                 mPreferenceManager.putString("sp_name", jsonObject.getString("name"));
@@ -408,7 +410,7 @@ public class VolleyHelper {
                         Log.d("Accept Reject API:", spResponse.toString());
 
                         try {
-                            EventBus.getDefault().post(new JobStartEndEvent(true, spResponse.getString("message"),status));
+                            EventBus.getDefault().post(new JobStartEndEvent(true, spResponse.getString("message"), status));
                             ;
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -537,6 +539,7 @@ public class VolleyHelper {
         jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, 2, 2));
         CustomerServicesApp.getInstance().addToRequestQueue(jsonRequest);
     }
+
     public void onOffJOb(JSONObject json) throws JSONException {
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Constants.BASE_URL + Constants.UPDATE_JOB_STATUS, json,
@@ -582,6 +585,73 @@ public class VolleyHelper {
 
                 } else {
                     EventBus.getDefault().post(new OnOffJobEvent(false, 0, error.toString()));
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+                Log.d("token: ", mPreferenceManager.getString("token"));
+                params.put("Authorization", mPreferenceManager.getString("token"));
+                return params;
+            }
+        };
+        jsonRequest.setShouldCache(false);
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, 2, 2));
+        CustomerServicesApp.getInstance().addToRequestQueue(jsonRequest);
+    }
+
+    public void calculateDistance(String url) {
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        Log.d(TAG, jsonObject.toString());
+                        JSONArray array = null;
+                        try {
+                            array = jsonObject.getJSONArray("routes");
+                            JSONObject routes = array.getJSONObject(0);
+                            JSONArray legs = routes.getJSONArray("legs");
+                            JSONObject steps = legs.getJSONObject(0);
+                            JSONObject distance = steps.getJSONObject("distance");
+                            String parsedDistance = distance.getString("text");
+
+                            EventBus.getDefault().post(new MapDistanceEvent(true, "", parsedDistance));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Error handling
+                Log.d(TAG, error.toString());
+                error.printStackTrace();
+                JSONObject errorJson = null;
+                // As of f605da3 the following should work
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        errorJson = new JSONObject(res);
+                        Log.d(TAG, "onErrorResponse: " + errorJson);
+                    } catch (UnsupportedEncodingException | JSONException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    }
+                }
+                if (error.networkResponse != null) {
+                    try {
+                        EventBus.getDefault().post(new MapDistanceEvent(false, error.networkResponse.statusCode, errorJson.getString("message")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    EventBus.getDefault().post(new TodaysJobEvent(false, 0, error.toString()));
                 }
             }
         }) {

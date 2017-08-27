@@ -7,4 +7,5 @@
     <color name="orange">#FF5722</color>
     <color name="light_gray">#E0E0E0</color>
     <color name="green">#64DD17</color>
+    <color name="dark_gray">#ccc</color>
 </resources>

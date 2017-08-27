@@ -108,7 +108,7 @@ public class JobDetailsActivity extends BaseActivity implements StringConstants 
 
     private void setData(final TodaysJobModel jobModel) throws JSONException {
         activityJobDetailBinding.jobId.setText(jobModel.getId());
-        activityJobDetailBinding.jobTimeTxt.setText(Utils.convertToDateFromUTC(jobModel.getServiceReqDate()));
+        activityJobDetailBinding.jobTimeTxt.setText(jobModel.getServiceReqDate());
         activityJobDetailBinding.billedAmountTxt.setText(jobModel.getAmount());
         activityJobDetailBinding.serviceNameTxt.setText(jobModel.getService());
         activityJobDetailBinding.statusTxt.setText(jobModel.getDisplayStatus());

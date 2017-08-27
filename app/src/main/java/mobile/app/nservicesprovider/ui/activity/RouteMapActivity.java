@@ -41,6 +41,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,11 +78,14 @@ public class RouteMapActivity extends BaseActivity implements OnMapReadyCallback
     ArrayList<LatLng> MarkerPoints;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    TextView distanceTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_map_activty);
+        distanceTxt = (TextView) findViewById(R.id.distance_txt);
+
         mContext = this;
         getSupportActionBar().setTitle("Route Map");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -141,9 +145,9 @@ public class RouteMapActivity extends BaseActivity implements OnMapReadyCallback
 
         List<LatLng> list = new ArrayList<>();
         LatLng spLatLng = new LatLng(NServicesSingleton.getInstance().getConsumerLatitude(), NServicesSingleton.getInstance().getConsumerLongitude());
-
+        LatLng userLatLng = null;
         if (preferenceManager.getString("user_lat") != null) {
-            LatLng userLatLng = new LatLng(NServicesSingleton.getInstance().getMycurrentLatitude(), NServicesSingleton.getInstance().getMycurrentLongitude());
+            userLatLng = new LatLng(NServicesSingleton.getInstance().getMycurrentLatitude(), NServicesSingleton.getInstance().getMycurrentLongitude());
 
             list.add(0, spLatLng);
             list.add(1, userLatLng);
@@ -158,9 +162,15 @@ public class RouteMapActivity extends BaseActivity implements OnMapReadyCallback
         LatLng dest = MarkerPoints.get(1);
 
         drawMarker(origin, dest);
+        distanceTxt.setText("Distance :" + String.valueOf(Utils.getDistance(userLatLng, spLatLng)));
 
         // Getting URL to the Google Directions API
-        String url = getUrl(origin, dest);
+        String url = null;
+        try {
+            url = getUrl(origin, dest);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         Log.d("onMapClick", url.toString());
         FetchUrl FetchUrl = new FetchUrl();
 
@@ -341,7 +351,8 @@ public class RouteMapActivity extends BaseActivity implements OnMapReadyCallback
         super.onBackPressed();
         finish();
     }
-    private String getUrl(LatLng origin, LatLng dest) {
+
+    private String getUrl(LatLng origin, LatLng dest) throws MalformedURLException {
 
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
@@ -361,8 +372,9 @@ public class RouteMapActivity extends BaseActivity implements OnMapReadyCallback
 
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
-
-
+        URL distanceUrl = new URL("http://maps.googleapis.com/maps/api/directions/json?origin=" + str_origin + "&destination=" + str_dest + "&sensor=false&units=metric&mode=driving");
+        //  volleyHelper.calculateDistance(String.valueOf(distanceUrl));
+        Log.d(TAG, "Distance getUrl: " + distanceUrl);
         return url;
     }
 
@@ -571,5 +583,28 @@ public class RouteMapActivity extends BaseActivity implements OnMapReadyCallback
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
+
+  /*  @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MapDistanceEvent event) {
+        if (event.success) {
+            distanceTxt.setText(event.distance);
+        } else {
+            UImsgs.showToastErrorMessage(mContext, event.errorCode);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().unregister(this);
+    }*/
 
 }

@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/service_name_txt"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/padding_4"
         android:shadowColor="@color/app_blue" />

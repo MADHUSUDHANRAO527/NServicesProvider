@@ -43,9 +43,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.UserSettingsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".ui.activity.UserProfileActivity"
+            android:screenOrientation="portrait" />
 
         <service android:name=".services.NewJobRequestService" />
         <service android:name=".services.SendSPLocationService" />

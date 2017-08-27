@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:font="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,16 +11,123 @@
             type="mobile.app.nservicesprovider.viewModels.HomeVM" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="app.mobile.nservicescustomer.ui.activity.UserSettingsActivity">
+        android:padding="@dimen/padding_12"
+        tools:context="app.mobile.nservicescustomer.ui.activity.UserProfileActivity">
+
+        <LinearLayout
+            android:id="@+id/name_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/first_name_lay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_6"
+                    android:text="@string/first_name"
+                    android:textColor="@color/dark_gray" />
+
+                <TextView
+                    android:id="@+id/first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_6"
+                    android:textColor="@android:color/black"
+                    font:customFont="Roboto-Regular.ttf" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_6"
+                    android:text="@string/last_name"
+                    android:textColor="@color/dark_gray" />
+
+                <TextView
+                    android:id="@+id/last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_6"
+                    android:textColor="@android:color/black"
+                    font:customFont="Roboto-Regular.ttf" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mobile_num_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_lay"
+            android:layout_marginTop="@dimen/margin_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_6"
+                android:text="@string/mobile_num"
+                android:textColor="@color/dark_gray" />
+
+            <TextView
+                android:id="@+id/mobile_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_6"
+                android:textColor="@android:color/black"
+                font:customFont="Roboto-Regular.ttf" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mobile_num_lay"
+            android:layout_marginTop="@dimen/margin_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_6"
+                android:text="@string/email"
+                android:textColor="@color/dark_gray" />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_6"
+                android:textColor="@android:color/black"
+                font:customFont="Roboto-Regular.ttf" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout!"
-            android:textSize="@dimen/text_size20sp" />
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/orange"
+            android:text="Logout"
+            android:textColor="@android:color/white"
+            font:customFont="Roboto-Regular.ttf" />
+
+    </RelativeLayout>
 </layout>
