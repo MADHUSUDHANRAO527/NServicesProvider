@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mobile.app.nservicesprovider">
+    package="com.infoskaters.nservicesprovider">
 
     <uses-permission
         android:name="android.permission.ACCESS_COARSE_LOCATION"
@@ -10,14 +10,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".utilities.CustomerServicesApp"
+        android:name="com.infoskaters.nservicesprovider.utilities.CustomerServicesApp"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name="com.infoskaters.nservicesprovider.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,32 +30,36 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCTM8cL3H2Vr_-y0ZgtRXb0uBjFHTan-7s" />
+            android:value="@string/map_api_key" />
 
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name="com.infoskaters.nservicesprovider.ui.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="com.infoskaters.nservicesprovider.ui.activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.UserProfileActivity"
+            android:name="com.infoskaters.nservicesprovider.ui.activity.UserProfileActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name=".services.NewJobRequestService" />
-        <service android:name=".services.SendSPLocationService" />
+        <service android:name="com.infoskaters.nservicesprovider.services.NewJobRequestService" />
+        <service android:name="com.infoskaters.nservicesprovider.services.SendSPLocationService" />
 
 
         <activity
-            android:name=".ui.activity.JobDetailsActivity"
+            android:name="com.infoskaters.nservicesprovider.ui.activity.JobDetailsActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.RouteMapActivity"
+            android:name="com.infoskaters.nservicesprovider.ui.activity.RouteMapActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.infoskaters.nservicesprovider.ui.activity.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

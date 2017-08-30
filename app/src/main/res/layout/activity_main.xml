@@ -7,7 +7,7 @@
 
         <variable
             name="home"
-            type="mobile.app.nservicesprovider.viewModels.HomeVM" />
+            type="com.infoskaters.nservicesprovider.viewModels.HomeVM" />
     </data>
 
     <android.support.v4.widget.DrawerLayout
@@ -44,7 +44,7 @@
 
         <fragment
             android:id="@+id/fragment_navigation_drawer"
-            android:name="mobile.app.nservicesprovider.ui.fragments.FragmentDrawer"
+            android:name="com.infoskaters.nservicesprovider.ui.fragments.FragmentDrawer"
             android:layout_width="@dimen/nav_drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"

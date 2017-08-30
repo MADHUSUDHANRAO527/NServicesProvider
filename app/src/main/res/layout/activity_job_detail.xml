@@ -8,7 +8,7 @@
 
         <variable
             name="login"
-            type="mobile.app.nservicesprovider.viewModels.HomeVM" />
+            type="com.infoskaters.nservicesprovider.viewModels.HomeVM" />
     </data>
 
     <RelativeLayout

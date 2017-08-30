@@ -7,7 +7,7 @@
 
         <variable
             name="home"
-            type="mobile.app.nservicesprovider.viewModels.HomeVM" />
+            type="com.infoskaters.nservicesprovider.viewModels.HomeVM" />
     </data>
 
 
