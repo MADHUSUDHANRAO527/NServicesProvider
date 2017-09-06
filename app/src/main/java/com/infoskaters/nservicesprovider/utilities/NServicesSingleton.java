@@ -14,6 +14,16 @@ public class NServicesSingleton {
     private Double mycurrentLatitude;
     private Double mycurrentLongitude;
 
+    public String getRegisterSignUpServiceId() {
+        return registerSignUpServiceId;
+    }
+
+    public void setRegisterSignUpServiceId(String registerSignUpServiceId) {
+        this.registerSignUpServiceId = registerSignUpServiceId;
+    }
+
+    private String registerSignUpServiceId;
+
     public void setMycurrentLatitude(Double mycurrentLatitude) {
         this.mycurrentLatitude = mycurrentLatitude;
     }

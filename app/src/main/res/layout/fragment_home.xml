@@ -36,13 +36,14 @@
                     android:src="@drawable/ic_account_circle_white"
                     android:tint="@color/app_blue" />
 
-                <Switch
+                <android.support.v7.widget.SwitchCompat
                     android:id="@+id/online_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/margin_8"
                     android:text="@string/online"
+                    android:theme="@style/OnOffSwitch"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="16sp" />
 
@@ -78,7 +79,8 @@
                         style="@style/Widget.MaterialRatingBar.RatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        app:mrb_progressTint="@color/orange" />
+                        android:isIndicator="true"
+                        app:mrb_progressTint="@color/green" />
 
                 </LinearLayout>
             </RelativeLayout>

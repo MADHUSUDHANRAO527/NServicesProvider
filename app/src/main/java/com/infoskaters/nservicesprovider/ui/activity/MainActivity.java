@@ -98,10 +98,10 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                 toolbar.setNavigationIcon(d);
             }
         });
-        if (mPreferenceManager.getString("sp_name") != null) {
-            spNameTxt.setText(mPreferenceManager.getString("sp_name"));
+        if (mPreferenceManager.getString("sp_id") != null) {
             spId = mPreferenceManager.getString("sp_id");
         }
+        spNameTxt.setText(mPreferenceManager.getString("sp_name"));
         navHeaderLay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

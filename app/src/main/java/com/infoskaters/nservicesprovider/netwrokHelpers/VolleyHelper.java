@@ -13,6 +13,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.infoskaters.nservicesprovider.events.ConsumerReviewEvent;
 import com.infoskaters.nservicesprovider.events.ForgetPasswordEvent;
 import com.infoskaters.nservicesprovider.events.FutureJobEvent;
 import com.infoskaters.nservicesprovider.events.JobAcceptEvent;
@@ -23,7 +24,9 @@ import com.infoskaters.nservicesprovider.events.MapDistanceEvent;
 import com.infoskaters.nservicesprovider.events.NewJobRequestEvent;
 import com.infoskaters.nservicesprovider.events.OnOffJobEvent;
 import com.infoskaters.nservicesprovider.events.RegisterEvent;
+import com.infoskaters.nservicesprovider.events.RegisteredServicesEvent;
 import com.infoskaters.nservicesprovider.events.TodaysJobEvent;
+import com.infoskaters.nservicesprovider.models.RegisterServicesModel;
 import com.infoskaters.nservicesprovider.models.TodaysJobModel;
 import com.infoskaters.nservicesprovider.utilities.Constants;
 import com.infoskaters.nservicesprovider.utilities.CustomerServicesApp;
@@ -182,8 +185,8 @@ public class VolleyHelper {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
-                Log.d("token: ", mPreferenceManager.getString("token"));
-                params.put("Authorization", mPreferenceManager.getString("token"));
+                //   Log.d("token: ", mPreferenceManager.getString("token"));
+                //    params.put("Authorization", mPreferenceManager.getString("token"));
                 return params;
             }
         };
@@ -246,8 +249,8 @@ public class VolleyHelper {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
-                Log.d("token: ", mPreferenceManager.getString("token"));
-                params.put("Authorization", mPreferenceManager.getString("token"));
+                //   Log.d("token: ", mPreferenceManager.getString("token"));
+                //   params.put("Authorization", mPreferenceManager.getString("token"));
                 return params;
             }
         };
@@ -310,8 +313,8 @@ public class VolleyHelper {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
-             //   Log.d("token: ", mPreferenceManager.getString("token"));
-                params.put("Authorization", mPreferenceManager.getString("token"));
+                //   Log.d("token: ", mPreferenceManager.getString("token"));
+                //    params.put("Authorization", mPreferenceManager.getString("token"));
                 return params;
             }
         };
@@ -376,8 +379,8 @@ public class VolleyHelper {
             public Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
-                Log.d("token: ", mPreferenceManager.getString("token"));
-                params.put("Authorization", mPreferenceManager.getString("token"));
+                //    Log.d("token: ", mPreferenceManager.getString("token"));
+                //    params.put("Authorization", mPreferenceManager.getString("token"));
                 return params;
             }
         };
@@ -399,9 +402,8 @@ public class VolleyHelper {
         if (mPreferenceManager.getString("user_lat") != null) {
             locationJson.put("latitude", mPreferenceManager.getString("user_lat"));
             locationJson.put("longitude", mPreferenceManager.getString("user_long"));
+            json.put("location", locationJson);
         }
-
-        json.put("location", locationJson);
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Constants.BASE_URL + Constants.UPDATE_JOB_STATUS, json,
                 new Response.Listener<JSONObject>() {
@@ -453,8 +455,8 @@ public class VolleyHelper {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
-                Log.d("token: ", mPreferenceManager.getString("token"));
-                params.put("Authorization", mPreferenceManager.getString("token"));
+                //    Log.d("token: ", mPreferenceManager.getString("token"));
+                //    params.put("Authorization", mPreferenceManager.getString("token"));
                 return params;
             }
         };
@@ -474,9 +476,10 @@ public class VolleyHelper {
         if (mPreferenceManager.getString("user_lat") != null) {
             locationJson.put("latitude", mPreferenceManager.getString("user_lat"));
             locationJson.put("longitude", mPreferenceManager.getString("user_long"));
+            json.put("location", locationJson);
+
         }
 
-        json.put("location", locationJson);
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Constants.BASE_URL + Constants.SEND_SP_LOCATION, json,
                 new Response.Listener<JSONObject>() {
@@ -531,8 +534,8 @@ public class VolleyHelper {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
-                Log.d("token: ", mPreferenceManager.getString("token"));
-                params.put("Authorization", mPreferenceManager.getString("token"));
+                //      Log.d("token: ", mPreferenceManager.getString("token"));
+                //      params.put("Authorization", mPreferenceManager.getString("token"));
                 return params;
             }
         };
@@ -542,6 +545,12 @@ public class VolleyHelper {
     }
 
     public void onOffJOb(JSONObject json) throws JSONException {
+        JSONObject locationJson = new JSONObject();
+        if (mPreferenceManager.getString("user_lat") != null) {
+            locationJson.put("latitude", mPreferenceManager.getString("user_lat"));
+            locationJson.put("longitude", mPreferenceManager.getString("user_long"));
+            json.put("location", locationJson);
+        }
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Constants.BASE_URL + Constants.UPDATE_JOB_STATUS, json,
                 new Response.Listener<JSONObject>() {
@@ -593,8 +602,8 @@ public class VolleyHelper {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json");
-                Log.d("token: ", mPreferenceManager.getString("token"));
-                params.put("Authorization", mPreferenceManager.getString("token"));
+                //    Log.d("token: ", mPreferenceManager.getString("token"));
+                //    params.put("Authorization", mPreferenceManager.getString("token"));
                 return params;
             }
         };
@@ -682,18 +691,18 @@ public class VolleyHelper {
                             e.printStackTrace();
                         }
 
-                       /* try {
+                        try {
                             JSONObject jsonObject = signUpResponse.getJSONObject("data");
-                            mPreferenceManager.putString("firstname", jsonObject.getString("firstname"));
-                            mPreferenceManager.putString("lastname", jsonObject.getString("lastname"));
+                            mPreferenceManager.putString("login_response", jsonObject.toString());
                             mPreferenceManager.putString("mobile", jsonObject.getString("mobile"));
                             mPreferenceManager.putString("email", jsonObject.getString("email"));
-                            mPreferenceManager.putString("consumer_id", jsonObject.getString("id"));
+                            mPreferenceManager.putString("sp_id", jsonObject.getString("id"));
+                      //      mPreferenceManager.putString("token", signUpResponse.getString("token"));
+                            mPreferenceManager.putString("sp_name", jsonObject.getString("name"));
 
-                            EventBus.getDefault().post(new RegisterEvent(true, signUpResponse.getString("message")));
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }*/
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -775,6 +784,127 @@ public class VolleyHelper {
                 if (error.networkResponse != null) {
                     try {
                         EventBus.getDefault().post(new ForgetPasswordEvent(false, error.networkResponse.statusCode, errorJson.getString("message")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+                // params.put("Authorization", getAuthHeader());
+                return params;
+            }
+        };
+        jsonRequest.setShouldCache(false);
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, 2, 2));
+        CustomerServicesApp.getInstance().addToRequestQueue(jsonRequest);
+    }
+
+    public void getRegsiteredServicesList() {
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Constants.BASE_URL + Constants.GET_REGISTER_SERVICES_LIST, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject spResponse) {
+                        Log.d(TAG, spResponse.toString());
+                        Gson gson = new Gson();
+                        Type type = new TypeToken<ArrayList<RegisterServicesModel>>() {
+                        }.getType();
+                        ArrayList<RegisterServicesModel> registerServicesModels = null;
+                        try {
+                            registerServicesModels = gson.fromJson(spResponse.getJSONArray("data").toString(), type);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        EventBus.getDefault().post(new RegisteredServicesEvent(true, registerServicesModels));
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Error handling
+                Log.d(TAG, error.toString());
+                error.printStackTrace();
+                JSONObject errorJson = null;
+                // As of f605da3 the following should work
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        errorJson = new JSONObject(res);
+                        Log.d(TAG, "onErrorResponse: " + errorJson);
+                    } catch (UnsupportedEncodingException | JSONException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    }
+                }
+                if (error.networkResponse != null) {
+                    try {
+                        EventBus.getDefault().post(new RegisteredServicesEvent(false, error.networkResponse.statusCode, errorJson.getString("message")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    EventBus.getDefault().post(new RegisteredServicesEvent(false, 0, error.toString()));
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+                //  Log.d("token: ", mPreferenceManager.getString("token"));
+                //  params.put("Authorization", mPreferenceManager.getString("token"));
+                return params;
+            }
+        };
+        jsonRequest.setShouldCache(false);
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(10000, 2, 2));
+        CustomerServicesApp.getInstance().addToRequestQueue(jsonRequest);
+    }
+
+    public void postServiceProviderReview(JSONObject reviewJson) {
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Constants.BASE_URL + Constants.CONSUMER_REVIEW, reviewJson,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject reviewResponse) {
+                        Log.d(TAG, reviewResponse.toString());
+                        try {
+                            EventBus.getDefault().post(new ConsumerReviewEvent(true, reviewResponse.getString("message"), reviewResponse));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Error handling
+                Log.d(TAG, error.toString());
+                error.printStackTrace();
+                JSONObject errorJson = null;
+                // As of f605da3 the following should work
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        errorJson = new JSONObject(res);
+                        Log.d(TAG, "onErrorResponse: " + errorJson);
+                        // Toast.makeText(mContext, errorJson.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (UnsupportedEncodingException | JSONException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    }
+                }
+                if (error.networkResponse != null) {
+                    try {
+                        EventBus.getDefault().post(new ConsumerReviewEvent(false, error.networkResponse.statusCode, errorJson.getString("message")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

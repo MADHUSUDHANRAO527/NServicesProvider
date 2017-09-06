@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="@dimen/padding_16"
-                    android:text="@string/signup"
+                    android:text="@string/sp_signup"
                     android:textSize="20sp" />
 
                 <RelativeLayout
@@ -106,6 +106,7 @@
                     android:id="@+id/services_spinner"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
                     android:layout_margin="@dimen/margin_16"/>
 
                 <View

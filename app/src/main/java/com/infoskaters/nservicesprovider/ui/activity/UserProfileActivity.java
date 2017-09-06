@@ -37,7 +37,7 @@ public class UserProfileActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 mPreferenceManager.clear();
-                startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
+                startActivity(new Intent(UserProfileActivity.this, LoginActivity.class));
             }
         });
     }

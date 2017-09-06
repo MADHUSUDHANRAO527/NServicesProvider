@@ -31,7 +31,6 @@
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-
                     android:src="@drawable/logo_login" />
 
                 <TextView
@@ -39,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="@dimen/padding_16"
-                    android:text="@string/login"
+                    android:text="@string/sp_login"
                     android:textSize="20sp"
                     font:customFont="Roboto-Regular.ttf" />
 

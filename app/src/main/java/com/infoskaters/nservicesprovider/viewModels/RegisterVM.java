@@ -10,6 +10,7 @@ import com.infoskaters.nservicesprovider.R;
 import com.infoskaters.nservicesprovider.databinding.ActivityRegisterBinding;
 import com.infoskaters.nservicesprovider.netwrokHelpers.VolleyHelper;
 import com.infoskaters.nservicesprovider.ui.activity.RegisterActivity;
+import com.infoskaters.nservicesprovider.utilities.NServicesSingleton;
 import com.infoskaters.nservicesprovider.utilities.UImsgs;
 
 import org.json.JSONException;
@@ -70,7 +71,7 @@ public class RegisterVM {
                 jsonObject.put("name", registerBinding.firstName.getText());
                 jsonObject.put("email", registerBinding.email.getText());
                 jsonObject.put("mobile", registerBinding.mobileNum.getText());
-                jsonObject.put("service", 4);
+                jsonObject.put("service", NServicesSingleton.getInstance().getRegisterSignUpServiceId());
                 jsonObject.put("password", registerBinding.password.getText());
                 volleyHelper.signUp(jsonObject);
             } catch (JSONException e) {
@@ -82,4 +83,5 @@ public class RegisterVM {
     public void signInClick(View view) {
         ((Activity) context).finish();
     }
+
 }

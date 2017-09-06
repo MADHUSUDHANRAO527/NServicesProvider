@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
                 fragmentHomeBinding.spNameTxt.setText(loginModel.getName());
                 fragmentHomeBinding.jobsCompletedTxt.setText("Jobs Completed : " + loginModel.getJobsCompleted());
                 int rating = (int) loginModel.getRating();
-                fragmentHomeBinding.ratingBar.setNumStars(rating);
+                fragmentHomeBinding.ratingBar.setRating(rating);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -100,6 +100,14 @@ public class HomeFragment extends Fragment {
             Snackbar.make(getActivity().findViewById(android.R.id.content), mContext.getString(R.string.internet_connection), Snackbar.LENGTH_SHORT).show();
         }
         fragmentHomeBinding.onlineSwitch.setChecked(true);
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("status", "on");
+            jsonObject.put("sp_id", mPreferenceManager.getString("sp_id"));
+            volleyHelper.onOffJOb(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         fragmentHomeBinding.onlineSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -138,7 +146,7 @@ public class HomeFragment extends Fragment {
 
     private void setupViewPager(final ViewPager viewPager) {
         JobsViewPagerAdapter adapter = new JobsViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new TodayJobsFragment(), "Today's Job");
+        adapter.addFragment(new TodayJobsFragment(), "Today's Jobs");
         adapter.addFragment(new FutureJobsFragment(), "Future Jobs");
         viewPager.setAdapter(adapter);
         fragmentHomeBinding.tabs.setupWithViewPager(fragmentHomeBinding.viewpager);

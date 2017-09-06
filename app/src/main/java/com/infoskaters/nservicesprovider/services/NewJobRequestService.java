@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import com.infoskaters.nservicesprovider.netwrokHelpers.VolleyHelper;
 import com.infoskaters.nservicesprovider.utilities.PreferenceManager;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Madhu on 28/07/17.
@@ -49,7 +49,7 @@ public class NewJobRequestService extends Service {
                 // Log.d("run: ", "service is stopped!");
 
             }
-        }, 0, 5000);
+        }, 0, 9000);
         return START_STICKY;
     }
 

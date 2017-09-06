@@ -6,7 +6,7 @@ package com.infoskaters.nservicesprovider.utilities;
 
 public class Constants {
     //production
-    public static final String BASE_URL = "http://www.infoskaters.com/nservices/webservices/v1/sp";
+     public static final String BASE_URL = "http://www.infoskaters.com/nservices/webservices/v1/sp";
     //public static final String BASE_URL = "http://www.infoskaters.in/N-Services-app/v1/sp";
     public static final String SIGNIN_URL = "/login";
     public static final String TODAY_JOBS_LIST_URL = "/sp_job_history_today/";
@@ -17,5 +17,7 @@ public class Constants {
     public static final String SEND_SP_LOCATION = "/update_job_status";
     public static final String SIGNUP_URL = "/signup";
     public static final String FORGET_PASSWORD = "/spforgot";
+    public static final String GET_REGISTER_SERVICES_LIST = "/get-services";
+    public static final String CONSUMER_REVIEW = "/post-job-review";
 
 }

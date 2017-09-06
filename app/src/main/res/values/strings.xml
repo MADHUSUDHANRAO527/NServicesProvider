@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">nServiceSP</string>
     <string name="map_api_key">AIzaSyA3qCTbln2RFp_8x4fCTf5yjpk22zP-8Kw</string>
-    <string name="app_version">Version : 28082017</string>
+    <string name="app_version">Version : 01092017</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -23,6 +23,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
+    <string name="sp_login">Service Provider Login</string>
     <string name="mobile_num_email">Mobile No. / Email id</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -44,6 +45,7 @@
     <string name="internet_connection">Please check your network connection!</string>
     <string name="service_location">SERVICE LOCATION</string>
     <string name="signup">SIGN UP</string>
+    <string name="sp_signup">Service Provider Sign Up</string>
     <string name="first_name">First Name</string>
     <string name="name">Name</string>
     <string name="forget_password">Forgot Password</string>
@@ -56,6 +58,7 @@
     <string name="termsconditions"><u><![CDATA[Terms & Conditions and privacy policy]]></u></string>
     <string name="enter_proper_email_ph">Please enter proper email or phone number!</string>
     <string name="enter_proper_password">Please enter proper password!</string>
+    <string name="booking_details">Booking Details</string>
 
 
     <string name="enter_proper_firstname">Please enter firstname!</string>
@@ -104,15 +107,8 @@
     <string name="offline">Offline</string>
     <string name="email">Email</string>
     <string name="enter_proper_name">Enter name!</string>
+    <string name="select_service">Select a service you want to provide</string>
     <string-array name="services_array">
-        <item>Select a service you want to provide</item>
-        <item>Beauty</item>
-        <item>Elecrician</item>
-        <item>Health</item>
-        <item>Plumber</item>
-        <item>Carpenter</item>
-        <item>Painter</item>
-        <item>Ac Services</item>
-        <item>Wasing Machine Repair</item>
+        <item> </item>
     </string-array>
 </resources>
